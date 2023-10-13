@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://5a73gco1r63v"]
+
+[ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
+[ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qqqwu")
+
+[node name="Things" type="VBoxContainer" parent="."]
+layout_mode = 1
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 509.0
+offset_bottom = 242.0
+
+[node name="Title" type="Label" parent="Things"]
+layout_mode = 2
+theme = ExtResource("1_qqqwu")
+theme_override_font_sizes/font_size = 96
+text = "hamstory"
+
+[node name="Thingy" type="RichTextLabel" parent="Things"]
+layout_mode = 2
+theme = ExtResource("1_qqqwu")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "starring [color=#ffaaaa]hammy the hamster[/color]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Options" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = -147.0
+offset_right = -46.0
+offset_bottom = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Start" parent="Options" instance=ExtResource("2_md4ge")]
+layout_mode = 2
+text = "start game"
+
+[node name="Credits" type="Button" parent="Options"]
+layout_mode = 2
+text = "credits"
+
+[node name="Settings" type="Button" parent="Options"]
+layout_mode = 2
+text = "settings"
