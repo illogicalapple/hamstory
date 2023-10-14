@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://5a73gco1r63v"]
+[gd_scene load_steps=5 format=3 uid="uid://5a73gco1r63v"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
+[ext_resource type="Script" path="res://src/menu/main_menu.gd" id="2_33mmf"]
 [ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
+[ext_resource type="AudioStream" uid="uid://bh5yao3xo2rw8" path="res://src/assets/sound/music/menu_music.mp3" id="4_0g0ct"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -11,24 +13,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_qqqwu")
+script = ExtResource("2_33mmf")
 
 [node name="Things" type="VBoxContainer" parent="."]
 layout_mode = 1
-offset_left = 64.0
-offset_top = 64.0
-offset_right = 509.0
-offset_bottom = 242.0
+offset_left = 184.0
+offset_top = 192.0
+offset_right = 1370.0
+offset_bottom = 636.0
 
 [node name="Title" type="Label" parent="Things"]
 layout_mode = 2
 theme = ExtResource("1_qqqwu")
-theme_override_font_sizes/font_size = 96
+theme_override_font_sizes/font_size = 208
 text = "hamstory"
 
 [node name="Thingy" type="RichTextLabel" parent="Things"]
 layout_mode = 2
 theme = ExtResource("1_qqqwu")
-theme_override_font_sizes/normal_font_size = 28
+theme_override_font_sizes/normal_font_size = 64
 bbcode_enabled = true
 text = "starring [color=#ffaaaa]hammy the hamster[/color]"
 fit_content = true
@@ -41,10 +44,10 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = -147.0
-offset_right = -46.0
-offset_bottom = -80.0
+offset_left = 184.0
+offset_top = -267.0
+offset_right = 74.0
+offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -59,3 +62,9 @@ text = "credits"
 [node name="Exit" parent="Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
 text = "exit"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0g0ct")
+autoplay = true
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
