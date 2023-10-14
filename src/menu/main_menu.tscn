@@ -1,9 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://5a73gco1r63v"]
+[gd_scene load_steps=6 format=3 uid="uid://5a73gco1r63v"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
 [ext_resource type="Script" path="res://src/menu/main_menu.gd" id="2_33mmf"]
 [ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
 [ext_resource type="AudioStream" uid="uid://bh5yao3xo2rw8" path="res://src/assets/sound/music/menu_music.mp3" id="4_0g0ct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3trfc"]
+bg_color = Color(1, 1, 1, 0.105882)
+expand_margin_left = 50.0
+expand_margin_right = 50.0
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -15,20 +20,28 @@ grow_vertical = 2
 theme = ExtResource("1_qqqwu")
 script = ExtResource("2_33mmf")
 
-[node name="Things" type="VBoxContainer" parent="."]
+[node name="MainScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Things" type="VBoxContainer" parent="MainScreen"]
 layout_mode = 1
 offset_left = 184.0
 offset_top = 192.0
 offset_right = 1370.0
 offset_bottom = 636.0
 
-[node name="Title" type="Label" parent="Things"]
+[node name="Title" type="Label" parent="MainScreen/Things"]
 layout_mode = 2
 theme = ExtResource("1_qqqwu")
 theme_override_font_sizes/font_size = 208
 text = "hamstory"
 
-[node name="Thingy" type="RichTextLabel" parent="Things"]
+[node name="Thingy" type="RichTextLabel" parent="MainScreen/Things"]
 layout_mode = 2
 theme = ExtResource("1_qqqwu")
 theme_override_font_sizes/normal_font_size = 64
@@ -38,33 +51,80 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Options" type="HBoxContainer" parent="."]
+[node name="Options" type="HBoxContainer" parent="MainScreen"]
 layout_mode = 1
-anchors_preset = 12
+anchors_preset = 2
 anchor_top = 1.0
-anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 184.0
-offset_top = -267.0
-offset_right = 74.0
-offset_bottom = -200.0
-grow_horizontal = 2
+offset_top = -264.0
+offset_right = 908.0
+offset_bottom = -176.0
 grow_vertical = 0
 
-[node name="Start" parent="Options" instance=ExtResource("2_md4ge")]
+[node name="Start" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
 text = "start game"
 
-[node name="Credits" parent="Options" instance=ExtResource("2_md4ge")]
+[node name="Credits" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
 text = "credits"
 
-[node name="Exit" parent="Options" instance=ExtResource("2_md4ge")]
+[node name="Exit" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
 text = "exit"
+
+[node name="WorldSelector" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1920.0
+offset_top = 1080.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Options" type="HBoxContainer" parent="WorldSelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -118.5
+offset_top = -482.0
+offset_right = 118.5
+offset_bottom = 482.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 186
+
+[node name="World1" type="Button" parent="WorldSelector/Options"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3trfc")
+text = "world 1
+(empty)"
+
+[node name="World2" type="Button" parent="WorldSelector/Options"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3trfc")
+text = "world 2
+(empty)"
+
+[node name="World3" type="Button" parent="WorldSelector/Options"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_3trfc")
+text = "world 3
+(empty)"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_0g0ct")
 autoplay = true
 
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[connection signal="pressed" from="MainScreen/Options/Start" to="." method="_on_start_pressed"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
