@@ -1,9 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://5a73gco1r63v"]
+[gd_scene load_steps=8 format=3 uid="uid://5a73gco1r63v"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
 [ext_resource type="Script" path="res://src/menu/main_menu.gd" id="2_33mmf"]
 [ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
 [ext_resource type="AudioStream" uid="uid://bh5yao3xo2rw8" path="res://src/assets/sound/music/menu_music.mp3" id="4_0g0ct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tb25"]
+bg_color = Color(1, 0.25098, 0.419608, 0.792157)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_m7wf1"]
+color = Color(0, 0, 0, 0.133333)
+thickness = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3trfc"]
 bg_color = Color(1, 1, 1, 0.105882)
@@ -70,9 +77,56 @@ text = "start game"
 layout_mode = 2
 text = "credits"
 
-[node name="Exit" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
+[node name="Quit" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
-text = "exit"
+text = "quit"
+
+[node name="QuitConfirm" type="Panel" parent="MainScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6tb25")
+
+[node name="QuitStuff" type="VBoxContainer" parent="MainScreen/QuitConfirm"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -309.0
+offset_top = -45.5
+offset_right = 309.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Warning" type="Label" parent="MainScreen/QuitConfirm/QuitStuff"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "quitting is for losers pls don't go"
+
+[node name="HSeparator" type="HSeparator" parent="MainScreen/QuitConfirm/QuitStuff"]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxLine_m7wf1")
+
+[node name="Buttons" type="HBoxContainer" parent="MainScreen/QuitConfirm/QuitStuff"]
+layout_mode = 2
+theme_override_constants/separation = 64
+
+[node name="Cancel" parent="MainScreen/QuitConfirm/QuitStuff/Buttons" instance=ExtResource("2_md4ge")]
+layout_mode = 2
+text = "go back"
+
+[node name="Quit" parent="MainScreen/QuitConfirm/QuitStuff/Buttons" instance=ExtResource("2_md4ge")]
+layout_mode = 2
+text = "i am a loser"
 
 [node name="WorldSelector" type="Control" parent="."]
 layout_mode = 1
@@ -127,4 +181,7 @@ autoplay = true
 anchor_mode = 0
 
 [connection signal="pressed" from="MainScreen/Options/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainScreen/Options/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="MainScreen/QuitConfirm/QuitStuff/Buttons/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="MainScreen/QuitConfirm/QuitStuff/Buttons/Quit" to="." method="quit_game_frfr"]
 [connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
