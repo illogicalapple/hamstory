@@ -10,6 +10,9 @@ func to_screen(coordinates: Vector2i, push: bool = true) -> Vector2i:
 	for tween in active_tweens: tween.kill() # kill all current tweens
 	if push: transition_list.append(coordinates) # push to coordinates
 	
+	# audio:
+	$MovementSFX.play()
+	
 	# movement stuff:
 	var tween: Tween = create_tween()
 	active_tweens.append(tween) # log tween so it can be killed later

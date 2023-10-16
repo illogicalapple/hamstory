@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://64tqlsigrl0t"]
+[gd_scene load_steps=4 format=3 uid="uid://64tqlsigrl0t"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_f2hc5"]
 [ext_resource type="Script" path="res://src/components/select_button.gd" id="2_5sgps"]
+[ext_resource type="AudioStream" uid="uid://cuuvmur5t1no4" path="res://src/assets/sound/sfx/button.mp3" id="3_pqr8f"]
 
 [node name="SelectButton" type="Button"]
 theme = ExtResource("1_f2hc5")
@@ -21,5 +22,9 @@ grow_vertical = 0
 mouse_filter = 2
 color = Color(0.49743, 0, 0.164697, 1)
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pqr8f")
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
