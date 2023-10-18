@@ -1,10 +1,31 @@
-[gd_scene load_steps=9 format=3 uid="uid://5a73gco1r63v"]
+[gd_scene load_steps=11 format=3 uid="uid://5a73gco1r63v"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
 [ext_resource type="Script" path="res://src/menu/main_menu.gd" id="2_33mmf"]
 [ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
 [ext_resource type="AudioStream" uid="uid://c0o55fb3otls3" path="res://src/assets/sound/music/ldksjfaklsjeskal.mp3" id="4_cf0qg"]
 [ext_resource type="AudioStream" uid="uid://cwy2qdace40b" path="res://src/assets/sound/sfx/transition-v2.mp3" id="5_ua3ad"]
+
+[sub_resource type="Animation" id="Animation_gtqsm"]
+resource_name = "title"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Title:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0jqxa"]
+_data = {
+"title": SubResource("Animation_gtqsm")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6tb25"]
 bg_color = Color(1, 0.25098, 0.419608, 0.792157)
@@ -69,6 +90,12 @@ text = "starring [color=#ffaaaa]hammy the hamster[/color]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Animation" type="AnimationPlayer" parent="MainScreen/Things"]
+autoplay = "title"
+libraries = {
+"": SubResource("AnimationLibrary_0jqxa")
+}
 
 [node name="Options" type="HBoxContainer" parent="MainScreen"]
 layout_mode = 1
