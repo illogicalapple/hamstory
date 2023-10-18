@@ -1,5 +1,7 @@
 extends Button
 
+@export var sfx: bool = true
+
 var height_or_whatever: float = 0:
 	set(new_value):
 		# this controls the height of the snazzy rectangle thing
@@ -29,3 +31,7 @@ func _ready():
 # mouse logic
 func _on_mouse_entered(): focus_state = true
 func _on_mouse_exited(): focus_state = false
+
+
+func _on_pressed():
+	if sfx: $AudioStreamPlayer.play()
