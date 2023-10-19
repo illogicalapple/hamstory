@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://c4c8y7rb6plri"]
 
-[ext_resource type="Texture2D" uid="uid://crwjihp0folc8" path="res://icon.svg" id="1_1sh6i"]
 [ext_resource type="Script" path="res://src/player/player.gd" id="1_nb0su"]
+[ext_resource type="Texture2D" uid="uid://c13b0v0clva38" path="res://src/assets/entities/hamster.png" id="2_jifqy"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_nb0su")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_1sh6i")
+texture = ExtResource("2_jifqy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
