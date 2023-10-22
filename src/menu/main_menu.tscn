@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://5a73gco1r63v"]
+[gd_scene load_steps=13 format=3 uid="uid://5a73gco1r63v"]
 
 [ext_resource type="Theme" uid="uid://de58itubqysea" path="res://resources/main_theme.tres" id="1_qqqwu"]
 [ext_resource type="Script" path="res://src/menu/main_menu.gd" id="2_33mmf"]
 [ext_resource type="PackedScene" uid="uid://64tqlsigrl0t" path="res://src/components/select_button.tscn" id="2_md4ge"]
+[ext_resource type="Texture2D" uid="uid://qlquhmnc2pes" path="res://src/assets/entities/hamster_up.png" id="3_c4wn6"]
 [ext_resource type="AudioStream" uid="uid://c0o55fb3otls3" path="res://src/assets/sound/music/ldksjfaklsjeskal.mp3" id="4_cf0qg"]
 [ext_resource type="AudioStream" uid="uid://cwy2qdace40b" path="res://src/assets/sound/sfx/transition-v2.mp3" id="5_ua3ad"]
 
@@ -39,6 +40,9 @@ bg_color = Color(1, 1, 1, 0.105882)
 expand_margin_left = 50.0
 expand_margin_right = 50.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wgugh"]
+bg_color = Color(1, 0.25098, 0.419608, 0.792157)
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -61,12 +65,27 @@ grow_vertical = 2
 color = Color(1, 0.25098, 0.419608, 1)
 
 [node name="MainScreen" type="Control" parent="."]
+clip_children = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainScreen"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -479.0
+offset_top = -325.0
+offset_right = -248.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("3_c4wn6")
 
 [node name="Things" type="VBoxContainer" parent="MainScreen"]
 layout_mode = 1
@@ -116,6 +135,7 @@ sfx = false
 [node name="Credits" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
 text = "credits"
+sfx = false
 
 [node name="Quit" parent="MainScreen/Options" instance=ExtResource("2_md4ge")]
 layout_mode = 2
@@ -148,7 +168,7 @@ grow_vertical = 2
 [node name="Warning" type="Label" parent="MainScreen/QuitConfirm/QuitStuff"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 96
-text = "quitting is for losers pls don't go"
+text = "quit game?"
 
 [node name="HSeparator" type="HSeparator" parent="MainScreen/QuitConfirm/QuitStuff"]
 custom_minimum_size = Vector2(0, 4)
@@ -162,11 +182,11 @@ theme_override_constants/separation = 64
 
 [node name="Cancel" parent="MainScreen/QuitConfirm/QuitStuff/Buttons" instance=ExtResource("2_md4ge")]
 layout_mode = 2
-text = "go back"
+text = "no"
 
 [node name="Quit" parent="MainScreen/QuitConfirm/QuitStuff/Buttons" instance=ExtResource("2_md4ge")]
 layout_mode = 2
-text = "i am a loser"
+text = "yes pls"
 
 [node name="WorldSelector" type="Control" parent="."]
 layout_mode = 1
@@ -213,6 +233,97 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_3trfc")
 text = "world 3
 (empty)"
 
+[node name="InputEater" type="ColorRect" parent="WorldSelector"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.45098)
+
+[node name="WorldInfo" type="Panel" parent="WorldSelector"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -460.0
+offset_top = -250.0
+offset_right = 460.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wgugh")
+
+[node name="Information" type="VBoxContainer" parent="WorldSelector/WorldInfo"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 759.0
+offset_bottom = 172.0
+theme_override_constants/separation = 36
+
+[node name="WorldName" type="Label" parent="WorldSelector/WorldInfo/Information"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 96
+text = "world 1"
+
+[node name="Stats" type="VBoxContainer" parent="WorldSelector/WorldInfo/Information"]
+layout_mode = 2
+
+[node name="Stat1" type="Label" parent="WorldSelector/WorldInfo/Information/Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "this world is empty :("
+
+[node name="Play" parent="WorldSelector/WorldInfo" instance=ExtResource("2_md4ge")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -108.5
+offset_top = -129.0
+offset_right = 108.5
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "start world!"
+
+[node name="Credit" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = -1.0
+anchor_right = 2.0
+grow_horizontal = 0
+
+[node name="Credit" type="VBoxContainer" parent="Credit"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 80.0
+offset_right = 1664.0
+offset_bottom = 493.0
+theme_override_constants/separation = 36
+
+[node name="Title" type="Label" parent="Credit/Credit"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 128
+text = "credits"
+
+[node name="Things" type="RichTextLabel" parent="Credit/Credit"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "code: shatteredreality and illogicalapple
+
+art: shatteredreality
+
+font: mini waku-waku (subject to change)"
+fit_content = true
+scroll_active = false
+
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_cf0qg")
 autoplay = true
@@ -225,6 +336,7 @@ pitch_scale = 0.8
 anchor_mode = 0
 
 [connection signal="pressed" from="MainScreen/Options/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MainScreen/Options/Credits" to="." method="_on_credits_pressed"]
 [connection signal="pressed" from="MainScreen/Options/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="MainScreen/QuitConfirm/QuitStuff/Buttons/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="MainScreen/QuitConfirm/QuitStuff/Buttons/Quit" to="." method="quit_game_frfr"]

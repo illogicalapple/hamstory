@@ -55,3 +55,7 @@ func _on_cancel_pressed():
 
 func quit_game_frfr():
 	get_tree().quit()
+
+
+func _on_credits_pressed():
+	to_screen(Vector2i(1, -1))

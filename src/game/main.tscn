@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bx5bnmh2ug0xi"]
+[gd_scene load_steps=3 format=3 uid="uid://bx5bnmh2ug0xi"]
 
 [ext_resource type="PackedScene" uid="uid://c4c8y7rb6plri" path="res://src/player/player.tscn" id="1_otsde"]
+[ext_resource type="PackedScene" uid="uid://hqlrh2c8dm62" path="res://src/game/gui.tscn" id="2_65gtr"]
 
-[node name="Node" type="Node"]
+[node name="Main" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource("1_otsde")]
 position = Vector2(890, 453)
+
+[node name="GUI" parent="." instance=ExtResource("2_65gtr")]

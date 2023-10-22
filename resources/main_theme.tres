@@ -1,4 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://de58itubqysea"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://de58itubqysea"]
+
+[ext_resource type="FontFile" uid="uid://bvqdflnh7237h" path="res://src/assets/fonts/mini-wakuwaku/mini-wakuwaku.otf" id="1_pgvxu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rku63"]
 
@@ -16,6 +18,7 @@ expand_margin_right = 10.0
 expand_margin_bottom = 10.0
 
 [resource]
+default_font = ExtResource("1_pgvxu")
 Button/font_sizes/font_size = 64
 Button/styles/disabled = SubResource("StyleBoxEmpty_rku63")
 Button/styles/focus = SubResource("StyleBoxEmpty_4xy1k")
